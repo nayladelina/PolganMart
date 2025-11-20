@@ -24,7 +24,7 @@ if (isset($_POST['login'])) {
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Login POLGAN MART</title>
+    <title>Login POLGAN BEAUTY MART</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -67,7 +67,7 @@ if (isset($_POST['login'])) {
 </head>
 <body>
 <div class="card">
-    <h2>Login POLGAN MART</h2>
+    <h2>Login POLGAN BEAUTY MART</h2>
     <form method="POST">
         <input type="text" name="username" placeholder="Username" required>
         <input type="password" name="password" placeholder="Password" required>

@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-// Jika belum login, redirect ke login
+
 if (!isset($_SESSION['username'])) {
     header("Location: index.php");
     exit;
@@ -9,8 +9,8 @@ if (!isset($_SESSION['username'])) {
 
 // Data Barang
 $kode_barang  = ["BRG01","BRG02","BRG03","BRG04","BRG05"];
-$nama_barang  = ["Pensil","Buku Tulis","Penghapus","Penggaris","Bolpoin"];
-$harga_barang = [3000,5000,2000,4000,3500];
+$nama_barang  = ["Mascara","liptint","eyebrow","Blush on","softlens"];
+$harga_barang = [30500,55000,52000,54000,33500];
 
 // Logika Penjualan Random
 $beli = [];
@@ -81,7 +81,7 @@ $grandtotal_diskon = $grandtotal - $nilai_diskon;
 </head>
 <body>
 <div class="navbar">
-    <div>-- POLGAN MART --</div>
+    <div>-- POLGAN BEAUTY MART --</div>
     <div>
         Login sebagai: <b><?php echo $_SESSION['username']; ?></b> | 
         <a href="logout.php">Logout</a>
