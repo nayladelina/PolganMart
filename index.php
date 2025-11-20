@@ -1,3 +1,26 @@
+<?php
+session_start();
+
+if (isset($_SESSION['username'])) {
+    header("Location: dashboard.php");
+    exit;
+}
+
+$error = "";
+if (isset($_POST['login'])) {
+    $user = $_POST['username'];
+    $pass = $_POST['password'];
+
+
+    if ($user == "admin" && $pass == "1234") {
+        $_SESSION['username'] = $user;
+        header("Location: dashboard.php");
+        exit;
+    } else {
+        $error = "Username atau Password salah!";
+    }
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,17 +62,18 @@
             cursor: pointer;
         }
         button:hover { background: #1e40af; }
+        .error { color: red; text-align: center; margin-top: 10px; }
     </style>
 </head>
 <body>
-    <div class="card">
-        <h2>Login POLGAN MART</h2>
-        <!-- Form login sederhana -->
-        <form method="POST" action="dashboard.php">
-            <input type="text" name="username" placeholder="Username" required>
-            <input type="password" name="password" placeholder="Password" required>
-            <button type="submit">Masuk</button>
-        </form>
-    </div>
+<div class="card">
+    <h2>Login POLGAN MART</h2>
+    <form method="POST">
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <button type="submit" name="login">Masuk</button>
+    </form>
+    <?php if(!empty($error)) { echo "<p class='error'>$error</p>"; } ?>
+</div>
 </body>
 </html>
