@@ -20,8 +20,8 @@ $grandtotal = 0;
 
 // Pilih barang dan jumlah acak
 for($i=0; $i<5; $i++){
-    $beli[$i] = rand(0,4);     // index barang acak
-    $jumlah[$i] = rand(1,5);   // jumlah acak 1–5
+    $beli[$i] = rand(0,4);     
+    $jumlah[$i] = rand(1,5);   
 }
 
 // Hitung total per item menggunakan foreach
@@ -64,6 +64,7 @@ foreach($beli as $i => $index){
         table { width:100%; border-collapse:collapse; margin-top:20px; }
         table th, table td { border:1px solid #ddd; padding:12px; text-align:center; }
         table thead { background:#2563eb; color:white; }
+        .total { text-align:right; font-size:18px; margin-top:15px; }
     </style>
 </head>
 <body>
@@ -88,7 +89,6 @@ foreach($beli as $i => $index){
         </thead>
         <tbody>
             <?php
-            // Tampilkan detail pembelian dengan foreach
             foreach($beli as $i => $index){
                 echo "<tr>";
                 echo "<td>{$kode_barang[$index]}</td>";
@@ -101,7 +101,8 @@ foreach($beli as $i => $index){
             ?>
         </tbody>
     </table>
-    <h3>Total Belanja: Rp <?php echo number_format($grandtotal); ?></h3>
+    <!-- Commit 8: Total Belanja -->
+    <div class="total"><b>Total Belanja: Rp <?php echo number_format($grandtotal); ?></b></div>
 </div>
 </body>
 </html>
