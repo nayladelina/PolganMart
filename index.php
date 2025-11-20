@@ -6,7 +6,7 @@ if (isset($_SESSION['username'])) {
     exit;
 }
 
-$error = "";
+$error = " ";
 if (isset($_POST['login'])) {
     $user = $_POST['username'];
     $pass = $_POST['password'];
@@ -19,7 +19,7 @@ if (isset($_POST['login'])) {
     } else {
         $error = "Username atau Password salah!";
     }
-}
+} 
 ?>
 <!DOCTYPE html>
 <html>
