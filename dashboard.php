@@ -22,8 +22,12 @@ $grandtotal = 0;
 for($i=0; $i<5; $i++){
     $beli[$i] = rand(0,4);     // index barang acak
     $jumlah[$i] = rand(1,5);   // jumlah acak 1–5
-    $total[$i] = $harga_barang[$beli[$i]] * $jumlah[$i]; // total per item
-    $grandtotal += $total[$i]; // akumulasi grandtotal
+}
+
+// Hitung total per item menggunakan foreach
+foreach($beli as $i => $index){
+    $total[$i] = $harga_barang[$index] * $jumlah[$i];
+    $grandtotal += $total[$i];
 }
 ?>
 <!DOCTYPE html>
@@ -84,8 +88,8 @@ for($i=0; $i<5; $i++){
         </thead>
         <tbody>
             <?php
-            for($i=0; $i<count($beli); $i++){
-                $index = $beli[$i];
+            // Tampilkan detail pembelian dengan foreach
+            foreach($beli as $i => $index){
                 echo "<tr>";
                 echo "<td>{$kode_barang[$index]}</td>";
                 echo "<td>{$nama_barang[$index]}</td>";
