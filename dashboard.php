@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-
+// Jika belum login, redirect ke login
 if (!isset($_SESSION['username'])) {
     header("Location: index.php");
     exit;
@@ -9,8 +9,22 @@ if (!isset($_SESSION['username'])) {
 
 // Data Barang
 $kode_barang  = ["BRG01","BRG02","BRG03","BRG04","BRG05"];
-$nama_barang  = ["Pensil","Buku Tulis","Penghapus","Penggaris","tip-x"];
+$nama_barang  = ["Pensil","Buku Tulis","Penghapus","Penggaris","Bolpoin"];
 $harga_barang = [3000,5000,2000,4000,3500];
+
+// Logika Penjualan Random
+$beli = [];
+$jumlah = [];
+$total = [];
+$grandtotal = 0;
+
+// Pilih barang dan jumlah acak
+for($i=0; $i<5; $i++){
+    $beli[$i] = rand(0,4);     // index barang acak
+    $jumlah[$i] = rand(1,5);   // jumlah acak 1–5
+    $total[$i] = $harga_barang[$beli[$i]] * $jumlah[$i]; // total per item
+    $grandtotal += $total[$i]; // akumulasi grandtotal
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -57,27 +71,33 @@ $harga_barang = [3000,5000,2000,4000,3500];
     </div>
 </div>
 <div class="container">
-    <h2>Daftar Produk</h2>
+    <h2>Daftar Penjualan Random</h2>
     <table>
         <thead>
             <tr>
                 <th>Kode</th>
                 <th>Nama Barang</th>
                 <th>Harga</th>
+                <th>Jumlah</th>
+                <th>Total</th>
             </tr>
         </thead>
         <tbody>
             <?php
-            for($i=0; $i<count($kode_barang); $i++){
+            for($i=0; $i<count($beli); $i++){
+                $index = $beli[$i];
                 echo "<tr>";
-                echo "<td>{$kode_barang[$i]}</td>";
-                echo "<td>{$nama_barang[$i]}</td>";
-                echo "<td>Rp ".number_format($harga_barang[$i])."</td>";
+                echo "<td>{$kode_barang[$index]}</td>";
+                echo "<td>{$nama_barang[$index]}</td>";
+                echo "<td>Rp ".number_format($harga_barang[$index])."</td>";
+                echo "<td>{$jumlah[$i]}</td>";
+                echo "<td>Rp ".number_format($total[$i])."</td>";
                 echo "</tr>";
             }
             ?>
         </tbody>
     </table>
+    <h3>Total Belanja: Rp <?php echo number_format($grandtotal); ?></h3>
 </div>
 </body>
 </html>
