@@ -29,6 +29,18 @@ foreach($beli as $i => $index){
     $total[$i] = $harga_barang[$index] * $jumlah[$i];
     $grandtotal += $total[$i];
 }
+
+// Hitung Diskon
+if($grandtotal < 50000){
+    $diskon = 0.05; // 5%
+} elseif($grandtotal <= 100000){
+    $diskon = 0.10; // 10%
+} else {
+    $diskon = 0.15; // 15%
+}
+
+$nilai_diskon = $grandtotal * $diskon;
+$grandtotal_diskon = $grandtotal - $nilai_diskon;
 ?>
 <!DOCTYPE html>
 <html>
@@ -101,8 +113,10 @@ foreach($beli as $i => $index){
             ?>
         </tbody>
     </table>
-    <!-- Commit 8: Total Belanja -->
+    <!-- Commit 8 & 9: Total Belanja + Diskon -->
     <div class="total"><b>Total Belanja: Rp <?php echo number_format($grandtotal); ?></b></div>
+    <div class="total"><b>Diskon: Rp <?php echo number_format($nilai_diskon); ?> (<?php echo $diskon*100; ?>%)</b></div>
+    <div class="total"><b>Grand Total: Rp <?php echo number_format($grandtotal_diskon); ?></b></div>
 </div>
 </body>
 </html>
